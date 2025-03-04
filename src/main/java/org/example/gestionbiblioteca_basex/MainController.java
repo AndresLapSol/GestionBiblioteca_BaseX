@@ -6,12 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.example.gestionbiblioteca_basex.Repositories.Repository;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainController {
     @FXML
     private Label welcomeText;
+    Repository repository = new Repository();
 
     @FXML
     protected void abrirCreate(){
@@ -48,4 +51,15 @@ public class MainController {
             System.err.println("Error al cargar deleteupdatefxml: " + e.getMessage());
         }
     };
+
+    @FXML
+    private void handleShowBooksButton() {
+        List<String> books = repository.getBooks();
+        System.out.println("Lista de libros en la base de datos:");
+        System.out.println("====================================");
+        for (String book : books) {
+            System.out.println(book);
+            System.out.println("====================================");
+        }
+    }
 }

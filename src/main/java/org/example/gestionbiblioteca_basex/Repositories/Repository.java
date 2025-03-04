@@ -4,11 +4,37 @@ import org.basex.api.client.ClientSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Repository {
 
+    public List<String> getBooks() {
+        List<String> books = new ArrayList<>();
+        try {
+            ClientSession session = new ClientSession("localhost", 1984, "Goku", "Goku");
+            System.out.println("Conectado a BaseX para obtener libros.");
 
+            String queryGetBooks = "for $b in doc('biblioteca')/library/book " +
+                    "return concat('Título: ', $b/title, '\n', " +
+                    "'Autor: ', $b/author, '\n', " +
+                    "'Año: ', $b/year, '\n', " +
+                    "'Género: ', $b/genre, '\n-------------------------')";
+
+            String result = session.execute("XQUERY " + queryGetBooks);
+
+            String[] bookEntries = result.split("\n-------------------------\n");
+            for (String entry : bookEntries) {
+                books.add(entry);
+            }
+
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
 
     public void insertBook(String title, String author, String year, String genre) {
         ClientSession session = null;
@@ -162,5 +188,44 @@ public class Repository {
         }
         return titles;
     }
+
+    public Map<String, String> getBookByTitle(String title) {
+        ClientSession session = null;
+        Map<String, String> bookData = new HashMap<>();
+
+        try {
+            session = new ClientSession("localhost", 1984, "Goku", "Goku");
+            System.out.println("Conectado a BaseX para obtener información del libro.");
+
+            // Consulta XQuery para obtener los datos del libro seleccionado
+            String query = "let $b := doc('biblioteca')/library/book[title='" + title + "'] " +
+                    "return (data($b/author), data($b/year), data($b/genre))";
+
+            String result = session.execute("XQUERY " + query);
+            String[] details = result.split("\n");
+
+            if (details.length == 3) {
+                bookData.put("author", details[0].trim());
+                bookData.put("year", details[1].trim());
+                bookData.put("genre", details[2].trim());
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error al obtener datos del libro: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                try {
+                    session.close();
+                    System.out.println("Sesión cerrada correctamente.");
+                } catch (Exception e) {
+                    System.err.println("Error al cerrar la sesión: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }
+        return bookData;
+    }
+
 
 }

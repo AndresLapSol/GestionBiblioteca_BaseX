@@ -19,8 +19,8 @@
             <Font name="System Italic" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="buttonInsertar" onAction="#abrirCreate"  layoutX="93.0" layoutY="206.0" mnemonicParsing="false" text="Insertar" />
-      <Button fx:id="buttonDelUpd" onAction="#abrirOther" layoutX="85.0" layoutY="255.0" mnemonicParsing="false" text="Del &amp; Upd" />
+      <Button fx:id="buttonInsertar" layoutX="93.0" layoutY="206.0" mnemonicParsing="false" onAction="#abrirCreate" text="Insertar" />
+      <Button fx:id="buttonDelUpd" layoutX="85.0" layoutY="255.0" mnemonicParsing="false" onAction="#abrirOther" text="Del &amp; Upd" />
       <ImageView fitHeight="30.0" fitWidth="41.0" layoutX="14.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/imagen_A.png" />
@@ -31,5 +31,6 @@
             <Font name="IBM Plex Mono SmBld" size="14.0" />
          </font>
       </Label>
+      <Button fx:id="buttonShow" onAction="#handleShowBooksButton" layoutX="72.0" layoutY="301.0" mnemonicParsing="false" text="Mostrar Libros" />
    </children>
 </AnchorPane>
