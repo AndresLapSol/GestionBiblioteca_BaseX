@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.example.gestionbiblioteca_basex.Repositories.Repository;
+import org.example.gestionbiblioteca_basex.Repositories.CreateRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 public class MainController {
     @FXML
     private Label welcomeText;
-    Repository repository = new Repository();
+    CreateRepository createRepository = new CreateRepository();
 
     @FXML
     protected void abrirCreate(){
@@ -54,12 +54,17 @@ public class MainController {
 
     @FXML
     private void handleShowBooksButton() {
-        List<String> books = repository.getBooks();
+        CreateRepository repository = new CreateRepository();
+
+        // Obtener la lista de libros desde BaseX.
+        List<String> books = repository.getLibros();
+
         System.out.println("Lista de libros en la base de datos:");
         System.out.println("====================================");
         for (String book : books) {
             System.out.println(book);
-            System.out.println("====================================");
         }
     }
+
+
 }

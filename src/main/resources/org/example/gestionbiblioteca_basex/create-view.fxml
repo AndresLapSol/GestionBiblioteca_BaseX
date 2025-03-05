@@ -25,10 +25,10 @@
       <Label layoutX="36.0" layoutY="150.0" text="Año:" />
       <TextField fx:id="textFieldYear" layoutX="74.0" layoutY="146.0" prefHeight="24.0" prefWidth="118.0" />
       <Label layoutX="14.0" layoutY="181.0" text="Genero:" />
-      <Button fx:id="buttonInsert" onAction="#insertAction" layoutX="51.0" layoutY="254.0" mnemonicParsing="false" text="Insertar" />
-      <Button layoutX="150.0" layoutY="254.0" mnemonicParsing="false" text="Cancelar" />
+      <Button fx:id="buttonInsert" layoutX="51.0" layoutY="254.0" mnemonicParsing="false" onAction="#insertAction" text="Insertar" />
+      <Button fx:id="buttonCancel" onAction="#cerrarVentana" layoutX="150.0" layoutY="254.0" mnemonicParsing="false" text="Cancelar" />
       <ChoiceBox fx:id="choiceBoxGene" layoutX="75.0" layoutY="177.0" prefHeight="24.0" prefWidth="118.0" />
-      <StackPane layoutX="216.0" layoutY="-3.0" prefHeight="66.0" prefWidth="62.0">
+      <StackPane layoutX="216.0" layoutY="-3.0" onMouseClicked="#crudGenre" prefHeight="66.0" prefWidth="62.0">
          <children>
             <Circle fill="#eb3440" radius="23.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

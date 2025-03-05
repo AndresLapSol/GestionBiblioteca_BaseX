@@ -1,9 +1,13 @@
 package org.example.gestionbiblioteca_basex.Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import org.example.gestionbiblioteca_basex.Repositories.Repository;
+import org.example.gestionbiblioteca_basex.Repositories.CreateRepository;
+import org.example.gestionbiblioteca_basex.Repositories.DeleteUpdateRepository;
+
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +22,7 @@ public class DeleteUpdateController {
     @FXML
     private ChoiceBox<String> choiceBoxGene;
 
-    private Repository repository = new Repository();
+    private DeleteUpdateRepository repository = new DeleteUpdateRepository();
 
     @FXML
     public void initialize() {
@@ -26,13 +30,8 @@ public class DeleteUpdateController {
         List<String> titles = repository.getAllTitles();
         choiceBoxTitle.getItems().addAll(titles);
 
-        // Llenar el ChoiceBox de géneros
-        choiceBoxGene.getItems().addAll(
-                "Romántico",
-                "Bíblico",
-                "Cocina",
-                "Aventura"
-        );
+        //Choicebox generos
+        cargarGeneros();
 
         // Manejar la selección de un título y autocompletar los campos
         choiceBoxTitle.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -51,13 +50,21 @@ public class DeleteUpdateController {
     @FXML
     private void handleUpdateButton() {
         String selectedTitle = choiceBoxTitle.getValue();
-        String newTitle = choiceBoxTitle.getValue(); // Puedes cambiar esto si decides usar otro campo para modificar el título
+        String newTitle = choiceBoxTitle.getValue();
         String newAuthor = textFieldAuthor.getText();
         String newYear = textFieldYear.getText();
         String newGenre = choiceBoxGene.getValue();
 
         if (selectedTitle != null && newAuthor != null && newYear != null && newGenre != null) {
             repository.updateBook(selectedTitle, newTitle, newAuthor, newYear, newGenre);
+
+            // Actualizar la lista de títulos
+            choiceBoxTitle.getItems().setAll(repository.getAllTitles());
+
+            // Limpiar campos
+            textFieldAuthor.clear();
+            textFieldYear.clear();
+            choiceBoxGene.setValue(null);
         } else {
             System.out.println("Por favor, complete todos los campos.");
         }
@@ -77,6 +84,20 @@ public class DeleteUpdateController {
             choiceBoxGene.setValue(null);
         } else {
             System.out.println("Por favor, seleccione un título para eliminar.");
+        }
+    }
+
+
+    private void cargarGeneros() {
+        // Obtener la lista de géneros desde el repositorio
+        List<String> generos = repository.getGeneros();
+
+        // Cargar la lista de géneros en el ChoiceBox
+        ObservableList<String> generosObservable = FXCollections.observableArrayList(generos);
+        choiceBoxGene.setItems(generosObservable);
+
+        if (!generos.isEmpty()) {
+            choiceBoxGene.setValue(generos.get(0));
         }
     }
 }
