@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <genres>
+        <genre>Novela</genre>
+        <genre>Realismo mágico</genre>
+        <genre>Distopía</genre>
+        <genre>Romance</genre>
+        <genre>Filosófico</genre>
+        <genre>Fábula</genre>
+        <genre>Épico</genre>
+        <genre>Teatro</genre>
+        <genre>Horror</genre>
+        <genre>Histórico</genre>
+    </genres>
+
+    <books>
+        <book>
+            <title>El Quijote</title>
+            <author>Miguel de Cervantes</author>
+            <year>1605</year>
+            <genre>Novela</genre>
+        </book>
+        <book>
+            <title>Cien años de soledad</title>
+            <author>Gabriel García Márquez</author>
+            <year>1967</year>
+            <genre>Realismo mágico</genre>
+        </book>
+        <book>
+            <title>1984</title>
+            <author>George Orwell</author>
+            <year>1949</year>
+            <genre>Distopía</genre>
+        </book>
+        <book>
+            <title>Orgullo y prejuicio</title>
+            <author>Jane Austen</author>
+            <year>1813</year>
+            <genre>Romance</genre>
+        </book>
+        <book>
+            <title>Crimen y castigo</title>
+            <author>Fiódor Dostoyevski</author>
+            <year>1866</year>
+            <genre>Filosófico</genre>
+        </book>
+        <book>
+            <title>El principito</title>
+            <author>Antoine de Saint-Exupéry</author>
+            <year>1943</year>
+            <genre>Fábula</genre>
+        </book>
+        <book>
+            <title>La Odisea</title>
+            <author>Homero</author>
+            <year>-800</year>
+            <genre>Épico</genre>
+        </book>
+        <book>
+            <title>Don Juan Tenorio</title>
+            <author>José Zorrilla</author>
+            <year>1844</year>
+            <genre>Teatro</genre>
+        </book>
+        <book>
+            <title>Drácula</title>
+            <author>Bram Stoker</author>
+            <year>1897</year>
+            <genre>Horror</genre>
+        </book>
+        <book>
+            <title>Los miserables</title>
+            <author>Victor Hugo</author>
+            <year>1862</year>
+            <genre>Histórico</genre>
+        </book>
+    </books>
+</library>
+
